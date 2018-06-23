@@ -13,6 +13,16 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    <h1>Update your profile pic</h1>
+    {!! Form::open(['action' => 'HomeController@addProfilePic', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+        <div class="form-group">
+            {{Form::file('profile_image'), ['class' => 'form-control']}}
+        </div>
+        {{Form::submit('Edit The profile pic', ['class' => "btn btn-primary"])}}
+        
+    {!! Form::close() !!}
+        <br>
+        <p></p>
                     <a href="/posts/create" class = "btn btn-primary">Create a Post</a>
                     <br><p></p>
                     <h1>Your Posts</h1>

@@ -104,7 +104,7 @@ class CommentsController extends Controller
         $comments = Comment::all();
 
         
-        return redirect('/posts/'.$post_id)->with('success', 'POST DELETED')
+        return redirect('/posts/'.$post_id)->with('success', 'COMMENT DELETED')
                                      ->with('comments', $comments);
     }
 }
