@@ -23,4 +23,6 @@ Route::resource('posts', 'PostsController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::delete('/admin', 'HomeController@destroy')->name('home');
 Route::post('/home', 'HomeController@addProfilePic')->name('home');
+Route::get('/admin', 'HomeController@show');

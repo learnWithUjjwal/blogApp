@@ -45,14 +45,32 @@ class HomeController extends Controller
             //upload file
             $path = $request->file('profile_image')->storeAs('public/profile_image', $fileNameToStore);
             // //Delete Previous file
-            // unlink(public_path('storage/profile_image/'.$user->cover_image));
+            if($user->profile_image !== "noimage.jpg"){
+                unlink(public_path('storage/profile_image/'.$user->profile_image));
+            }
+            
         }
         if($request->hasFile('profile_image')){
             $user->profile_image = $fileNameToStore;
         }
         $user->save();
         return redirect('/home')->with ('success', 'Profile Pic Updated');
+    }
 
+    public function show(){
+        $users = User::all();
+        return view ('admin.dash' ) ->with ('users', $users);
+    }
 
+    public function destroy(){
+        $user = User::find($id);
+
+        // if($user->profile_image !== "noimage.jpg"){
+        //     unlink(public_path('/storage/profile_image/'.$user->profile_image));
+        // }
+        
+        $user->delete();
+        
+        return redirect('/admin')->with('success', 'USER DELETED');
     }
 }
